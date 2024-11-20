@@ -63,18 +63,6 @@ INSERT INTO public."Clientes"(id, nombre)VALUES (4, 'Pablo Picasso');
 INSERT INTO public."Clientes"(id, nombre)VALUES (5, 'Salvador Dalí');
 INSERT INTO public."Clientes"(id, nombre)VALUES (6, 'Fernando Botero');
 
-select * from public."Tipos_Productos"
-select * from public."Tipos_Ingredientes"
-
-select * 
-from public."Ingredientes"
-
-select * 
-from public."Productos"
-
-select * 
-from public."Productos_Ingredientes"
-
 update public."Ingredientes"
 set precio = precio * 1000
 
@@ -90,6 +78,22 @@ insert into public."Heladerias_Productos"(id_heladeria, id_producto)VALUES (1, 1
 insert into public."Heladerias_Productos"(id_heladeria, id_producto)VALUES (1, 3);
 insert into public."Heladerias_Productos"(id_heladeria, id_producto)VALUES (1, 8);
 insert into public."Heladerias_Productos"(id_heladeria, id_producto)VALUES (1, 9);
+
+select * from public."Tipos_Productos"
+
+select * from public."Tipos_Ingredientes"
+
+select * from public."Ingredientes"
+
+select * from public."Productos"
+
+select * from public."Productos_Ingredientes"
+
+select * from public."Clientes"
+
+select * from public."Heladerias_Productos"
+
+select * from public."Ventas"
 
 --Todos los productos
 select 
@@ -113,14 +117,6 @@ inner join public."Ingredientes" as Ing
 inner join public."Heladerias_Productos" as HP
 	on Prod.Id = HP.id_producto
 
-
-select 
-	Ing.*
-from public."Productos_Ingredientes" as PI
-inner join public."Ingredientes" as Ing
-	on Ing.Id = PI.id_ingrediente	
-	and PI.id_producto = 1
-	and Ing.id_tipo_ingrediente = 2
 
 
 

@@ -4,8 +4,8 @@ from sqlalchemy.sql.functions import func
 
 from models.ingrediente import Ingrediente
 from models.producto_ingrediente import ProductoIngrediente
+from models.heladeria_producto import HeladeriaProducto
 from models.venta import Venta
-
 
 class Producto(db.Model):
     __tablename__ = 'Productos'
@@ -133,7 +133,19 @@ class Producto(db.Model):
                 .where(ProductoIngrediente.id_producto == id_producto)
         )
         db.session.execute(stmt)
-            
+
+        stmt = (
+            db.delete(HeladeriaProducto)
+                .where(HeladeriaProducto.id_producto == id_producto)
+        )
+        db.session.execute(stmt)
+
+        stmt = (
+            db.delete(Venta)
+                .where(Venta.id_producto == id_producto)
+        )
+        db.session.execute(stmt)
+
         producto = db.get_or_404(Producto, id_producto)
         db.session.delete(producto)
         db.session.commit()

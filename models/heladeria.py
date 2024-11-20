@@ -3,6 +3,7 @@ from sqlalchemy import select, join, update
 from sqlalchemy.sql.functions import func
 
 from models.producto import Producto
+from models.cliente import Cliente
 from models.venta import Venta
 from models.ingrediente import Ingrediente
 from models.producto_ingrediente import ProductoIngrediente
@@ -108,8 +109,10 @@ class Heladeria(db.Model):
                 )
         db.session.execute(stmt)        
 
+        producto = Producto.consultar_por_id(id_producto)
+
         # INgresamos una nueva venta, se dejan datos dummy para cliente y cantidad de productos
-        nueva_venta = Venta(id_heladeria= 1, id_cliente = 1, id_producto = id_producto, cantidad_productos = 1)
+        nueva_venta = Venta(id_heladeria= 1, id_cliente = 1, id_producto = id_producto, valor_venta =producto.precio, cantidad_productos = 1)
         db.session.add(nueva_venta)
 
         db.session.commit()
